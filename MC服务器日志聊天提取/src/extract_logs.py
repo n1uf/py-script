@@ -3,7 +3,6 @@
 # 2. 将该脚本的exe文件放到本地logs文件夹中
 # 3. 双击运行该脚本，可以将所有log文件中的用户聊天内容提取到一个txt文件中
 
-
 import os
 import gzip
 import re
@@ -43,9 +42,16 @@ def decompress_gz_files(directory, log_dir):
             print(f"删除文件: {gz_path}")
 
 def extract_content_from_logs(log_dir, output_file):
-    """从 .log 文件中提取 <...> 包含的内容及其后面一整行的内容"""
-    pattern = re.compile(r"<.*?>.*")
-    
+    """从 .log 文件中提取包含 <...> 的整行内容，并在前面加上文件名，同时避免重复写入"""
+    pattern = re.compile(r".*<.*?>.*")  # 匹配包含 <...> 的整行
+    written_lines = set()  # 用于存储已写入的行，避免重复
+
+    # 读取当前文件中的内容，初始化已写入的行集合
+    if os.path.exists(output_file):
+        with open(output_file, 'r', encoding='utf-8') as out_file:
+            for line in out_file:
+                written_lines.add(line.strip())  # 加入集合，去除行尾换行符
+
     with open(output_file, 'a', encoding='utf-8') as out_file:  # 以追加模式打开输出文件
         for filename in os.listdir(log_dir):
             if filename.endswith('.log'):
@@ -55,7 +61,10 @@ def extract_content_from_logs(log_dir, output_file):
                     for line in log_file:
                         match = pattern.search(line)
                         if match:
-                            out_file.write(match.group() + '\n')
+                            line_with_filename = f"{filename}: {line}"
+                            if line_with_filename.strip() not in written_lines:
+                                out_file.write(line_with_filename)  # 如果不重复，写入文件
+                                written_lines.add(line_with_filename.strip())  # 添加到集合中
 
                 print(f"处理完成: {log_path}")
 

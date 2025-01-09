@@ -1,10 +1,10 @@
 # 一些自用py脚本
 ## 压缩图片
 * 有图形界面
-* 
+* [下载](https://github.com/n1uf/py-script/raw/refs/heads/master/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9%E5%A4%A7%E5%B0%8F/%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F.exe)
 ## MCManager日志聊天内容提取
 * 见src源码说明
 * [下载](https://github.com/n1uf/py-script/raw/refs/heads/master/MC%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97%E8%81%8A%E5%A4%A9%E6%8F%90%E5%8F%96/extract_logs.exe)
 ## 批量去除pdf密码
 * 直接在同一目录下运行exe即可
-* 
+* [下载](https://github.com/n1uf/py-script/blob/master/%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E5%B7%B2%E7%9F%A5pdf%E5%AF%86%E7%A0%81/remove_pdf_password.exe)
